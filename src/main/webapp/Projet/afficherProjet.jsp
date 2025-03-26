@@ -62,6 +62,10 @@
       text-decoration: none;
       color: inherit;
     }
+    .logo a:before {
+      content: "🏗️";
+      margin-right: 10px;
+    }
 
     .menu {
       list-style: none;
@@ -145,7 +149,7 @@
       font-size: 14px;
     }
 
-    /* Main Content */
+
     .main-container {
       max-width: 1200px;
       margin: 80px auto 30px;
@@ -186,7 +190,7 @@
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
-    /* Project Table */
+
     .project-table-container {
       background: white;
       border-radius: 10px;

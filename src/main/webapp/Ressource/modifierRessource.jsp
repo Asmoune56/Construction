@@ -34,6 +34,10 @@
         color: rgb(0, 0, 0);
         text-decoration: none;
     }
+    .logo a:before {
+        content: "🏗️";
+        margin-right: 10px;
+    }
 
     .menu {
         list-style: none;

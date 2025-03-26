@@ -33,7 +33,7 @@ public class TacheDAO {
     }
 
     public List<Tache> afficherTaches() throws SQLException {
-        List<Tache> taches = new ArrayList<>();
+        List<Tache> taches = new ArrayList <>();
         String sql = "SELECT * FROM tache";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql);

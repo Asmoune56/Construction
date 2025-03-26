@@ -9,6 +9,12 @@
         padding: 0;
         margin: 0;
         box-sizing: border-box;
+     body{
+         background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+         url('https://png.pngtree.com/thumb_back/fh260/background/20240611/pngtree-construction-tools-in-the-form-of-house-on-wooden-background-image_15747755.jpg') no-repeat center center/cover;
+         min-height: 100vh;
+         color: var(--dark-color);
+     }
 
     }
 
@@ -33,6 +39,10 @@
     .logo a {
         color: rgb(0, 0, 0);
         text-decoration: none;
+    }
+    .logo a:before {
+        content: "🏗️";
+        margin-right: 10px;
     }
 
     .menu {
@@ -102,8 +112,8 @@
         justify-content: center;
         align-items: center;
         height: 92vh;
-        background-image:  url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdWdG1gXrG1ECnG-M_UiRRQKL246_Z3OctSdM6w206Bwq-E9RRpTlZmwNaLv1M_s-z5g4&usqp=CAU');
-        background-size: cover ;
+        /*background-image:  url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdWdG1gXrG1ECnG-M_UiRRQKL246_Z3OctSdM6w206Bwq-E9RRpTlZmwNaLv1M_s-z5g4&usqp=CAU');*/
+        /*background-size: cover ;*/
     }
     .container{
 

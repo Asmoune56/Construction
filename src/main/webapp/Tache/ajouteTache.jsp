@@ -64,6 +64,10 @@
         .logo a {
             text-decoration: none;
         }
+        .logo a:before {
+            content: "🏗️";
+            margin-right: 10px;
+        }
 
         .menu {
             list-style: none;

@@ -7,56 +7,85 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Liste des Ressources</title>
   <style>
+    :root {
+      --primary-color: #2c3e50;
+      --secondary-color: #3498db;
+      --accent-color: #e74c3c;
+      --light-color: #ecf0f1;
+      --dark-color: #2c3e50;
+      --success-color: #27ae60;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
     * {
       padding: 0;
       margin: 0;
       box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     body {
-      font-family: calibri, sans-serif;
+      background-color: #f5f7fa;
+      color: var(--dark-color);
     }
 
     .navbar {
       background: white;
-      font-family: calibri;
-      padding-right: 15px;
-      padding-left: 15px;
+      padding: 15px 30px;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     .navdiv {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .logo {
-      font-size: 35px;
-      font-weight: 600;
+      font-size: 28px;
+      font-weight: 700;
     }
 
     .logo a {
-      color: rgb(0, 0, 0);
+      color: var(--primary-color);
       text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo a:before {
+      content: "🏗️";
+      margin-right: 10px;
     }
 
     .menu {
       list-style: none;
       display: flex;
+      gap: 15px;
     }
 
     .menu li {
       position: relative;
-      padding: 10px;
     }
 
     .menu li .link {
-      color: rgb(0, 0, 0);
-      font-size: 15px;
+      color: var(--dark-color);
+      font-size: 16px;
       font-weight: 600;
       text-decoration: none;
-      padding: 10px;
-      display: block;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .menu li .link:hover {
+      background-color: var(--light-color);
+      color: var(--secondary-color);
     }
 
     .menu li:hover .submenu {
@@ -68,132 +97,191 @@
       position: absolute;
       background: white;
       list-style: none;
-      padding: 10px;
-      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+      min-width: 200px;
+      border-radius: 5px;
+      padding: 10px 0;
+      box-shadow: var(--shadow);
       z-index: 100;
+      top: 100%;
+      left: 0;
     }
 
     .submenu li {
-      padding: 5px 10px;
+      padding: 0;
     }
 
     .submenu li a {
-      white-space: nowrap;
+      padding: 10px 20px;
       display: block;
+      color: var(--dark-color);
+      transition: all 0.2s;
     }
 
-    ul button {
-      background-color: black;
-      margin-left: 30px;
-      margin-top: 8px;
-      border-radius: 10px;
-      padding: 5px;
-      width: 140px;
+    .submenu li a:hover {
+      background-color: var(--light-color);
+      color: var(--secondary-color);
+      padding-left: 25px;
+    }
+
+    .logout-btn {
+      background-color: var(--accent-color);
+      border-radius: 5px;
+      padding: 10px 20px;
       border: none;
+      cursor: pointer;
+      transition: all 0.3s;
     }
 
-    button a {
+    .logout-btn a {
       text-decoration: none;
       color: white;
       font-weight: 600;
       font-size: 15px;
     }
 
-    header{
-      background-color: #777777;
-      background-size: cover;
+    .logout-btn:hover {
+      background-color: #c0392b;
+      transform: translateY(-2px);
     }
 
-    .container {
-      width: 100%;
-      height: 100vh;
-      padding: 20px;
-      border-radius: 10px;
-      overflow: hidden;
-      background: rgba(0, 0, 0, 0.2);
-      box-shadow: 0 15px 20px rgba(0, 0, 0, 0.6);
+    main {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
 
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
     }
 
     h1 {
-      color: #ffffff;
-      margin-top: 0;
-      margin-bottom: 20px;
-    }
-    a.add-btn {
-      text-decoration: none;
-      background-color: #0666f7;
-      color: rgb(255, 255, 255);
-      padding: 10px;
-      border-radius: 10px;
-    }
-    a.add-btn:hover {
-      background-color: #357abd;
+      color: var(--primary-color);
+      font-size: 28px;
+      font-weight: 700;
     }
 
-    .project-table {
+    .add-btn {
+      text-decoration: none;
+      background-color: var(--success-color);
+      color: white;
+      padding: 12px 20px;
+      border-radius: 5px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s;
+    }
+
+    .add-btn:hover {
+      background-color: #219653;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .add-btn:before {
+      content: "+";
+      font-size: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      padding: 25px;
+      margin-bottom: 30px;
+    }
+
+    .table-responsive {
+      overflow-x: auto;
+    }
+
+    .data-table {
       width: 100%;
       border-collapse: collapse;
-      margin-bottom: 20px;
+      margin-top: 20px;
     }
 
-    .project-table th {
-      background-color: #000;
+    .data-table th {
+      background-color: var(--primary-color);
       color: white;
       text-align: left;
-      padding: 12px 15px;
+      padding: 15px;
+      font-weight: 600;
     }
 
-    .project-table td {
-      padding: 12px 15px;
-      border-bottom: 5px solid #040202;
-      color: white;
-      font-weight: 600
+    .data-table td {
+      padding: 15px;
+      border-bottom: 1px solid #e0e0e0;
+      color: var(--dark-color);
     }
 
-
+    .data-table tr:hover {
+      background-color: #f8f9fa;
+    }
 
     .btn {
-      padding: 6px 12px;
+      padding: 8px 16px;
       border: none;
-      border-radius: 4px;
+      border-radius: 5px;
       cursor: pointer;
-      font-weight: bold;
-      text-transform: uppercase;
-      font-size: 12px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
     }
-    .add-project{
-      display: flex;
-      justify-content: end;
-    }
+
     .btn-primary {
-      background-color: #0666f7;
-      color: rgb(255, 255, 255);
+      background-color: var(--secondary-color);
+      color: white;
+      text-decoration: none;
     }
 
     .btn-danger {
-      background-color: #e74c3c;
+      background-color: var(--accent-color);
       color: white;
+      text-decoration: none;
     }
 
     .btn-primary:hover {
-      background-color: #357abd;
+      background-color: #2980b9;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
     }
 
     .btn-danger:hover {
       background-color: #c0392b;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
     }
 
     .action-buttons {
       display: flex;
-      gap: 8px;
+      gap: 10px;
     }
 
-    .add-project {
-      margin-bottom: 20px;
+    @media (max-width: 768px) {
+      .navdiv {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .menu {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+      }
     }
-
-
   </style>
 </head>
 <body>
@@ -226,51 +314,51 @@
         </ul>
       </li>
       <li>
-        <button><a href="logout">Logout</a></button>
+        <button class="logout-btn"><a href="logout">Logout</a></button>
       </li>
     </ul>
   </div>
 </nav>
 
-<header>
-  <div class="container">
-    <h1>Liste des Ressources</h1>
-
-    <div class="add-project">
-
-      <a href="ressource?action=new" class="add-btn">+ Ajouter une nouvelle ressource</a>
+<main>
+  <div class="card">
+    <div class="page-header">
+      <h1>Liste des Ressources</h1>
+      <a href="ressource?action=new" class="add-btn">Ajouter une nouvelle ressource</a>
     </div>
 
-    <table class="project-table">
-      <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nom</th>
-        <th>Type</th>
-        <th>Quantité</th>
-        <th>Fournisseur</th>
-        <th>Actions</th>
-      </tr>
-      </thead>
-      <tbody>
-      <c:forEach var="ressource" items="${ressourceList}">
+    <div class="table-responsive">
+      <table class="data-table">
+        <thead>
         <tr>
-          <td>${ressource.id_RESS}</td>
-          <td>${ressource.nom}</td>
-          <td>${ressource.types}</td>
-          <td>${ressource.quantite}</td>
-          <td>${ressource.fournisseur}</td>
-          <td>
-            <div class="action-buttons">
-              <button class="btn btn-primary"><a href="ressource?action=TrouverRessourceParid&id_RESS=${ressource.id_RESS}" class="btn-edit">Modifier</a></button>
-              <button class="btn btn-danger"><a href="ressource?action=supprimer&id_RESS=${ressource.id_RESS}" >Supprimer</a></button>
-            </div>
-          </td>
+          <th>ID</th>
+          <th>Nom</th>
+          <th>Type</th>
+          <th>Quantité</th>
+          <th>Fournisseur</th>
+          <th>Actions</th>
         </tr>
-      </c:forEach>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+        <c:forEach var="ressource" items="${ressourceList}">
+          <tr>
+            <td>${ressource.id_RESS}</td>
+            <td>${ressource.nom}</td>
+            <td>${ressource.types}</td>
+            <td>${ressource.quantite}</td>
+            <td>${ressource.fournisseur}</td>
+            <td>
+              <div class="action-buttons">
+                <a href="ressource?action=TrouverRessourceParid&id_RESS=${ressource.id_RESS}" class="btn btn-primary">Modifier</a>
+                <a href="ressource?action=supprimer&id_RESS=${ressource.id_RESS}" class="btn btn-danger">Supprimer</a>
+              </div>
+            </td>
+          </tr>
+        </c:forEach>
+        </tbody>
+      </table>
+    </div>
   </div>
-</header>
+</main>
 </body>
 </html>

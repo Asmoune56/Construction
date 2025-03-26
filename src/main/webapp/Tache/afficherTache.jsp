@@ -61,6 +61,10 @@
             text-decoration: none;
             color: inherit;
         }
+                 .logo a:before {
+                     content: "🏗️";
+                     margin-right: 10px;
+                 }
 
         .menu {
             list-style: none;
